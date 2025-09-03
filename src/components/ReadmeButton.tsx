@@ -3,10 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { File } from "lucide-react";
 import { useState } from "react";
-import Markdown from "react-markdown";
 import ReadmeContent from "./ReadmeContent";
 
-export default function ReadmeButton({ repo, contents }: { repo: string, contents: any }) {
+export default function ReadmeButton({ repo, contents }: { repo: string, contents: unknown }) {
     const [loading, setLoading] = useState(false);
    const [readme, setReadme] = useState<string | null>(null);
 
