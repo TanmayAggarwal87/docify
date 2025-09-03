@@ -6,7 +6,7 @@ export async function fetchRepos() {
   const session = await auth();
 
   if (!session) {
-    console.log("No access token found. Please log in.");
+    console.log("No access token found Nigga");
   }
 
   const res = await fetch("https://api.github.com/user/repos", {
@@ -16,7 +16,7 @@ export async function fetchRepos() {
   });
 
   if (!res.ok) {
-    console.log(`GitHub API error: ${res.statusText}`);
+    console.log(`GitHub API error:`);
   }
 
   return res.json();

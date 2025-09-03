@@ -7,7 +7,7 @@ import { auth, signIn, signOut } from "../../auth";
 const Navbar = async () => {
   const session = await auth();
   return (
-    <nav className="border-b border-border bg-card px-6 py-4">
+    <nav className=" bg-[hsla(0,0%,90%,10%)] px-6 py-4 text-white">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <GitBranch className="h-6 w-6 " />
@@ -23,7 +23,7 @@ const Navbar = async () => {
                 <AvatarImage src={session?.user?.image} alt="image" />
                 <AvatarFallback>{session?.user?.name}</AvatarFallback>
               </Avatar>
-              <span className="text-md font-sans tracking-wide text-foreground hidden md:flex">
+              <span className="text-md font-sans tracking-wide text-white/70 hidden md:flex">
                 {session?.user?.name}
               </span>
               <form
@@ -47,7 +47,7 @@ const Navbar = async () => {
             </div>
           ) : (
             <Button
-              className="bg-[#181717] text-md cursor-pointer font-sans hover:bg-[#0f0f0f] active:bg-[#0a0a0a]"
+              className="bg-[#0f0f0f] text-md cursor-pointer font-sans hover:bg-[#0f0f0f] active:bg-[#0a0a0a]"
               onClick={async () => {
                 "use server";
                 await signIn("github");
