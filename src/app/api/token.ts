@@ -6,17 +6,19 @@ export async function fetchRepos() {
   const session = await auth();
 
   if (!session) {
-    console.log("No access token found Nigga");
+    console.log("No access token found.");
   }
 
-  const res = await fetch("https://api.github.com/user/repos", {
-    headers: {
-      Authorization: `Bearer ${session?.sessionToken}`,
-    },
-  });
+  const headers: Record<string, string> = {};
+
+  if (session?.sessionToken) {
+    headers.Authorization = `Bearer ${session.sessionToken}`;
+  }
+
+  const res = await fetch("https://api.github.com/user/repos", { headers });
 
   if (!res.ok) {
-    console.log(`GitHub API error:`);
+    console.log(`GitHub API error: ${res.status} ${res.statusText}`);
   }
 
   return res.json();

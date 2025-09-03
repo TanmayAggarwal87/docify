@@ -22,15 +22,19 @@ export async function fetchRepoContents(
 
   const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
 
-  const res = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${session?.sessionToken}`,
-      Accept: "application/vnd.github.v3+json",
-    },
-  });
+  // Build headers in a type-safe way
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github.v3+json",
+  };
+
+  if (session?.sessionToken) {
+    headers.Authorization = `Bearer ${session.sessionToken}`;
+  }
+
+  const res = await fetch(url, { headers });
 
   if (!res.ok) {
-    console.log(`GitHub api error`);
+    console.log(`GitHub API error: ${res.status} ${res.statusText}`);
   }
 
   const data = await res.json();
