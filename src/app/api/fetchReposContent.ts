@@ -24,7 +24,7 @@ export async function fetchRepoContents(
 
   const res = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${session?.sessionToken}`,
+      Authorization: `Bearer ${session?.sessionToken} ?? ""`,
       Accept: "application/vnd.github.v3+json",
     },
   });

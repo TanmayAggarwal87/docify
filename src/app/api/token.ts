@@ -11,7 +11,7 @@ export async function fetchRepos() {
 
   const res = await fetch("https://api.github.com/user/repos", {
     headers: {
-      Authorization: `Bearer ${session?.sessionToken}`,
+      Authorization: `Bearer ${session?.sessionToken} ?? "" `,
     },
   });
 
