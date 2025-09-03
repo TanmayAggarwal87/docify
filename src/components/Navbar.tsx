@@ -20,7 +20,7 @@ const Navbar = async () => {
           {session ? (
             <div className="flex items-center gap-3">
               <Avatar className="size-8">
-                <AvatarImage src={session?.user?.image} alt="image" />
+                <AvatarImage src={session?.user?.image as string | undefined} alt="image" />
                 <AvatarFallback>{session?.user?.name}</AvatarFallback>
               </Avatar>
               <span className="text-md font-sans tracking-wide text-white/70 hidden md:flex">
