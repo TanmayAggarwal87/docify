@@ -22,13 +22,12 @@ export async function fetchRepoContents(
 
   const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
 
-  // Build headers in a type-safe way
   const headers: Record<string, string> = {
     Accept: "application/vnd.github.v3+json",
   };
-
-  if (session?.sessionToken) {
-    headers.Authorization = `Bearer ${session.sessionToken}`;
+  const token = session?.sessionToken ?? ""
+  if (token) {
+    headers.Authorization = `Bearer ${session?.sessionToken}`;
   }
 
   const res = await fetch(url, { headers });

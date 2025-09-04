@@ -10,9 +10,9 @@ export async function fetchRepos() {
   }
 
   const headers: Record<string, string> = {};
-
-  if (session?.sessionToken) {
-    headers.Authorization = `Bearer ${session.sessionToken}`;
+  const token = session?.sessionToken ?? ""
+  if (token) {
+    headers.Authorization = `Bearer ${session?.sessionToken}`;
   }
 
   const res = await fetch("https://api.github.com/user/repos", { headers });
