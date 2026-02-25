@@ -9,11 +9,11 @@ import ReadmeButton from "@/components/ReadmeButton";
 export default async function RepoPage({
   params,
 }: {
-  params: { repo: string };
+  params: Promise<{ repo: string }>;
 }) {
   const session = await auth();
   const owner = `${session?.user?.login}`;
-  const repo = params.repo;
+  const { repo } = await params;
   const contents = await fetchRepoContents(owner, repo);
 
   return (
